@@ -928,7 +928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0993903edf43e429a74da937e9b013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Helm: {fileID: 1431164873}
   BaseMaxHitPoints: 100
   BaseMaxShieldPoints: 50
   BaseMinShieldPointsRegen: 1
@@ -936,7 +935,8 @@ MonoBehaviour:
   BaseMaxBoostPoints: 1
   BaseMinBoostPointsRegen: 0.1
   BaseMinBoostPercentRegen: 10
-  BaseAcceleration: 10
+  Helm: {fileID: 1431164873}
+  BaseAcceleration: 2
   BaseMaxSpeed: 10
   BaseMaxTurningSpeed: 90
   BaseMinTurningTime: 0

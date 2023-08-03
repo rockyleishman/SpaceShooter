@@ -33,7 +33,7 @@ public class PlayerController : BaseShip
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, _finalMinTurningTime, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier, Time.deltaTime));
 
             //accelerate
-            _velocity += transform.up * new Vector2(moveX, moveY).magnitude * Time.deltaTime;
+            _velocity += transform.up * new Vector2(moveX, moveY).magnitude * _finalAcceleration * Time.deltaTime;
 
             //clamp velocity at max speed
             _velocity = Vector2.ClampMagnitude(_velocity, _finalMaxSpeed);
