@@ -27,10 +27,10 @@ public class PlayerController : BaseShip
         if (moveX != 0.0f || moveY != 0.0f)
         {
             //steer ship
-            RotationTarget.rotation = Quaternion.Euler(RotationTarget.eulerAngles.x, RotationTarget.eulerAngles.y, Vector2.SignedAngle(Vector2.up, new Vector2(moveX, moveY)));
+            Helm.rotation = Quaternion.Euler(Helm.eulerAngles.x, Helm.eulerAngles.y, Vector2.SignedAngle(Vector2.up, new Vector2(moveX, moveY)));
 
             //orient ship        
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, RotationTarget.eulerAngles.z, ref _currentRotationalVelocity, _finalRotationTime, _finalRotationSpeed, Time.deltaTime));
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, _finalMinTurningTime, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier, Time.deltaTime));
 
             //accelerate
             _velocity += transform.up * new Vector2(moveX, moveY).magnitude * Time.deltaTime;

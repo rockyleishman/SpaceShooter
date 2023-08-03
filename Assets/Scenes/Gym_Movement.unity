@@ -669,7 +669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431164873}
   m_Layer: 0
-  m_Name: RotationTarget
+  m_Name: Helm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,12 +928,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0993903edf43e429a74da937e9b013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationTarget: {fileID: 1431164873}
+  Helm: {fileID: 1431164873}
   BaseMaxHitPoints: 100
   BaseMaxShieldPoints: 50
+  BaseMinShieldPointsRegen: 1
+  BaseMinShieldPercentRegen: 2
+  BaseMaxBoostPoints: 1
+  BaseMinBoostPointsRegen: 0.1
+  BaseMinBoostPercentRegen: 10
   BaseAcceleration: 10
   BaseMaxSpeed: 10
-  BaseInertiaBrakingPower: 0.2
+  BaseMaxTurningSpeed: 90
+  BaseMinTurningTime: 0
   BaseManualBrakingPower: 1
-  BaseRotationTime: 0
-  BaseRotationSpeed: 1440
+  BaseInertiaBrakingPower: 0.2
