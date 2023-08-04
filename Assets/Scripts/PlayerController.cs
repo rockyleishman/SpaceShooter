@@ -43,8 +43,6 @@ public class PlayerController : BaseShip
         {
             //manual brake
             _velocity = Vector2.Lerp(_velocity, Vector2.zero, _finalManualBrakingPower * Time.deltaTime);
-
-            Debug.Log("Braking");
         }
         else if (moveX == 0.0f && moveY == 0.0f)
         {
