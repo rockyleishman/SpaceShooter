@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class ProjectileShooter : MonoBehaviour
 {
     [Header("Projectile Settings")]
@@ -69,5 +67,7 @@ public class ProjectileShooter : MonoBehaviour
         Destroy(projectile, 5f);
     }
 }
+
+
 
 
