@@ -14,9 +14,14 @@ public class BaseShip : BaseObject
     protected float _finalMinShieldPercentRegen;
 
     [Header("Boost")]
+    [SerializeField] public float BaseBoostMultiplier = 1.5f;
+    protected float _finalBoostMultiplier;
+    [SerializeField] public float BaseBoostDecayTime = 1.0f;
+    protected float _finalBoostDecayTime;
+    protected float _currentBoostDecayVelocity; //used by Mathf.SmoothDampAngle
     [SerializeField] public float BaseMaxBoostPoints = 1.0f;
     protected float _finalMaxBoostPoints;
-    protected float _currentBoostPoints;
+    [SerializeField] protected float _currentBoostPoints;
     [SerializeField] public float BaseMinBoostPointsRegen = 0.1f;
     protected float _finalMinBoostPointsRegen;
     [SerializeField] [Range(0.0f, 6000.0f)] public float BaseMinBoostPercentRegen = 10.0f;
@@ -27,8 +32,10 @@ public class BaseShip : BaseObject
     [Space(5)]
     [SerializeField] public float BaseAcceleration = 10.0f;
     protected float _finalAcceleration;
+    protected float _currentAcceleration;
     [SerializeField] public float BaseMaxSpeed = 10.0f;
     protected float _finalMaxSpeed;
+    protected float _currentMaxSpeed;
     protected Vector3 _velocity;
     [SerializeField] public float BaseMaxTurningSpeed = 1440.0f;
     protected float _finalMaxTurningSpeed;
@@ -52,6 +59,8 @@ public class BaseShip : BaseObject
         _finalMinShieldPercentRegen = BaseMinShieldPercentRegen;
 
         //init boost
+        _finalBoostMultiplier = BaseBoostMultiplier;
+        _finalBoostDecayTime = BaseBoostDecayTime;
         _finalMaxBoostPoints = BaseMaxBoostPoints;
         _currentBoostPoints = _finalMaxBoostPoints;
         _finalMinBoostPointsRegen = BaseMinBoostPointsRegen;
@@ -59,6 +68,7 @@ public class BaseShip : BaseObject
 
         //init engines
         _finalAcceleration = BaseAcceleration;
+        _currentAcceleration = _finalAcceleration;
         _finalMaxSpeed = BaseMaxSpeed;
         _velocity = Vector2.zero;
         _finalMaxTurningSpeed = BaseMaxTurningSpeed;
