@@ -29,7 +29,7 @@ public class ProjectileShooter : MonoBehaviour
             fireTimer -= Time.deltaTime;
 
         // Check for user input to fire
-        if (Input.GetButton("Fire4") && fireTimer <= 0f)
+        if (Input.GetButton("PrimaryFireButton") && fireTimer <= 0f)
         {
             ShootProjectile();
             fireTimer = fireRate;
