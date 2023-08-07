@@ -50,4 +50,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] public float BaseBlastRadius = 1.0f;
     private int _finalBlastRadius;
 
+    public void Trigger()
+    {
+        
+    }
+
+    private void Fire()
+    {
+        
+    }
 }

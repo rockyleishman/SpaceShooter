@@ -19,13 +19,16 @@ public class PlayerController : BaseShip
     private string _moveYAxis;
     private string _aimXAxis;
     private string _aimYAxis;
-    private string _breakAxis;
+    private string _brakeAxis;
     private string _boostAxis;
     private string _fire1Axis;
     private string _fire2Axis;
+    private string _swapAxis;
     private string _pauseAxis;
-    private string _selectAxis;
-    private string _backAxis;
+    private string _menuSelectAxis;
+    private string _menuBackAxis;
+    private string _menuNavXAxis;
+    private string _menuNavYAxis;
 
     protected override void Start()
     {
@@ -46,13 +49,16 @@ public class PlayerController : BaseShip
             _moveYAxis = "MoveY_PS";
             _aimXAxis = "AimX_PS";
             _aimYAxis = "AimY_PS";
-            _breakAxis = "Break_PS";
+            _brakeAxis = "Brake_PS";
             _boostAxis = "Boost_PS";
-            _fire1Axis = "Null";
-            _fire2Axis = "Null";
-            _pauseAxis = "Null";
-            _selectAxis = "Null";
-            _backAxis = "Null";
+            _fire1Axis = "Fire1_PS";
+            _fire2Axis = "Fire2_PS";
+            _swapAxis = "Swap_PS";
+            _pauseAxis = "Pause_PS";
+            _menuSelectAxis = "MenuSelect_PS";
+            _menuBackAxis = "MenuBack_PS";
+            _menuNavXAxis = "MenuNavX_PS";
+            _menuNavYAxis = "MenuNavY_PS";
         }
         else if (ControllerType == GamePadType.XBox)
         {
@@ -60,13 +66,16 @@ public class PlayerController : BaseShip
             _moveYAxis = "MoveY_XB";
             _aimXAxis = "AimX_XB";
             _aimYAxis = "AimY_XB";
-            _breakAxis = "Break_XB";
+            _brakeAxis = "Brake_XB";
             _boostAxis = "Boost_XB";
-            _fire1Axis = "Null";
-            _fire2Axis = "Null";
-            _pauseAxis = "Null";
-            _selectAxis = "Null";
-            _backAxis = "Null";
+            _fire1Axis = "Fire1_XB";
+            _fire2Axis = "Fire2_XB";
+            _swapAxis = "Swap_XB";
+            _pauseAxis = "Pause_XB";
+            _menuSelectAxis = "MenuSelect_XB";
+            _menuBackAxis = "MenuBack_XB";
+            _menuNavXAxis = "MenuNavX_XB";
+            _menuNavYAxis = "MenuNavY_XB";
         }
         else if (ControllerType == GamePadType.NintendoSwitchProController)
         {
@@ -74,52 +83,51 @@ public class PlayerController : BaseShip
             _moveYAxis = "MoveY_NSP";
             _aimXAxis = "AimX_NSP";
             _aimYAxis = "AimY_NSP";
-            _breakAxis = "Break_NSP";
+            _brakeAxis = "Brake_NSP";
             _boostAxis = "Boost_NSP";
-            _fire1Axis = "Null";
-            _fire2Axis = "Null";
-            _pauseAxis = "Null";
-            _selectAxis = "Null";
-            _backAxis = "Null";
+            _fire1Axis = "Fire1_NSP";
+            _fire2Axis = "Fire2_NSP";
+            _swapAxis = "Swap_NSP";
+            _pauseAxis = "Pause_NSP";
+            _menuSelectAxis = "MenuSelect_NSP";
+            _menuBackAxis = "MenuBack_NSP";
+            _menuNavXAxis = "MenuNavX_NSP";
+            _menuNavYAxis = "MenuNavY_NSP";
         }
         else
         {
-            _moveXAxis = "Null";
-            _moveYAxis = "Null";
-            _aimXAxis = "Null";
-            _aimYAxis = "Null";
-            _breakAxis = "Null";
-            _boostAxis = "Null";
-            _fire1Axis = "Null";
-            _fire2Axis = "Null";
-            _pauseAxis = "Null";
-            _selectAxis = "Null";
-            _backAxis = "Null";
+            _moveXAxis = "MoveX_KBM";
+            _moveYAxis = "MoveY_KBM";
+            _aimXAxis = "AimX_KBM";
+            _aimYAxis = "AimY_KBM";
+            _brakeAxis = "Brake_KBM";
+            _boostAxis = "Boost_KBM";
+            _fire1Axis = "Fire1_KBM";
+            _fire2Axis = "Fire2_KBM";
+            _swapAxis = "Swap_KBM";
+            _pauseAxis = "Pause_KBM";
+            _menuSelectAxis = "Null";
+            _menuBackAxis = "Null";
+            _menuNavXAxis = "Null";
+            _menuNavYAxis = "Null";
         }
     }
 
     private void Update()
     {
-        //controller joystick input test
-        //Debug.Log("LX: " + Input.GetAxis("LeftStickX") + " LY: " + Input.GetAxis("LeftStickY") + " RX: " + Input.GetAxis("RightStickX") + " RY: " + Input.GetAxis("RightStickY"));
-
         DirectionalMovement();
+        FireWeapons();
     }
 
     private void DirectionalMovement()
     {
-        float moveX = Input.GetAxis("LeftStickX");
-        float moveY = Input.GetAxis("LeftStickY");
-
         //boost
-        if (Input.GetButton("Boost") && _currentBoostPoints > 0)
+        if (Input.GetAxis(_boostAxis) > 0.0f && _currentBoostPoints > 0)
         {
             //use boost
             _currentAcceleration = _finalAcceleration * _finalBoostMultiplier;
             _currentMaxSpeed = _finalMaxSpeed * _finalBoostMultiplier;
             _currentBoostPoints -= Time.deltaTime;
-
-            Debug.Log("Boosting");////////
         }
         else
         {
@@ -130,7 +138,7 @@ public class PlayerController : BaseShip
         }
 
         //regenerate boost
-        if (!Input.GetButton("Boost"))
+        if (Input.GetAxis(_boostAxis) <= 0.0f)
         {
             if (_currentBoostPoints < _finalMaxBoostPoints)
             {
@@ -149,8 +157,11 @@ public class PlayerController : BaseShip
                 {
                     _currentBoostPoints = _finalMaxBoostPoints;
                 }
-            }            
+            }
         }
+
+        float moveX = Input.GetAxis(_moveXAxis);
+        float moveY = Input.GetAxis(_moveYAxis);
 
         if (moveX != 0.0f || moveY != 0.0f)
         {
@@ -168,7 +179,7 @@ public class PlayerController : BaseShip
         }
 
         //brake
-        if (Input.GetButton("Brake"))
+        if (Input.GetAxis(_brakeAxis) > 0.0f)
         {
             //manual brake
             _velocity = Vector2.Lerp(_velocity, Vector2.zero, _finalManualBrakingPower * Time.deltaTime);
@@ -181,5 +192,20 @@ public class PlayerController : BaseShip
 
         //move ship
         transform.Translate(_velocity * Time.deltaTime, Space.World);
+    }
+
+    private void FireWeapons()
+    {
+        //fire primary weapon
+        if (Input.GetAxis(_fire1Axis) > 0.0f)
+        {
+            Fire1();
+        }
+
+        //fire secondary weapon (special)
+        if (Input.GetAxis(_fire2Axis) > 0.0f)
+        {
+            Fire2();
+        }
     }
 }

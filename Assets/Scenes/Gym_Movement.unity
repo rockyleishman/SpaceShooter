@@ -2004,6 +2004,8 @@ MonoBehaviour:
   BaseMaxShieldPoints: 50
   BaseMinShieldPointsRegen: 1
   BaseMinShieldPercentRegen: 2
+  BaseBoostMultiplier: 1.5
+  BaseBoostDecayTime: 1
   BaseMaxBoostPoints: 1
   BaseMinBoostPointsRegen: 0.1
   BaseMinBoostPercentRegen: 10
@@ -2011,9 +2013,9 @@ MonoBehaviour:
   BaseAcceleration: 8
   BaseMaxSpeed: 10
   BaseMaxTurningSpeed: 90
-  BaseMinTurningTime: 0
-  BaseManualBrakingPower: 2.1
-  BaseInertiaBrakingPower: 4.4
+  BaseManualBrakingPower: 1
+  BaseInertiaBrakingPower: 0.2
+  ControllerType: 3
 --- !u!58 &1917909670
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2142,6 +2144,10 @@ PrefabInstance:
     - target: {fileID: 4311139146331921119, guid: f1ca23038a3903f4e8740491ca0a59cd, type: 3}
       propertyPath: m_Name
       value: PlayerShip_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104373011067509455, guid: f1ca23038a3903f4e8740491ca0a59cd, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8328308080036781640, guid: f1ca23038a3903f4e8740491ca0a59cd, type: 3}
       propertyPath: m_RootOrder

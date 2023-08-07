@@ -14,14 +14,14 @@ public class BaseShip : BaseObject
     protected float _finalMinShieldPercentRegen;
 
     [Header("Boost")]
-    [SerializeField] public float BaseBoostMultiplier = 1.5f;
+    [SerializeField] [Range(1.0f, 5.0f)] public float BaseBoostMultiplier = 1.5f;
     protected float _finalBoostMultiplier;
-    [SerializeField] public float BaseBoostDecayTime = 1.0f;
+    [SerializeField] [Range(0.0f, 60.0f)] public float BaseBoostDecayTime = 1.0f;
     protected float _finalBoostDecayTime;
     protected float _currentBoostDecayVelocity; //used by Mathf.SmoothDampAngle
     [SerializeField] public float BaseMaxBoostPoints = 1.0f;
     protected float _finalMaxBoostPoints;
-    [SerializeField] protected float _currentBoostPoints;
+    protected float _currentBoostPoints;
     [SerializeField] public float BaseMinBoostPointsRegen = 0.1f;
     protected float _finalMinBoostPointsRegen;
     [SerializeField] [Range(0.0f, 6000.0f)] public float BaseMinBoostPercentRegen = 10.0f;
@@ -37,16 +37,26 @@ public class BaseShip : BaseObject
     protected float _finalMaxSpeed;
     protected float _currentMaxSpeed;
     protected Vector3 _velocity;
-    [SerializeField] public float BaseMaxTurningSpeed = 1440.0f;
+    [SerializeField] public float BaseMaxTurningSpeed = 90.0f;
     protected float _finalMaxTurningSpeed;
     protected const float k_turningSpeedDegreeModifier = 15.0f;
     protected float _currentTurningVelocity; //used by Mathf.SmoothDampAngle
-    [SerializeField] public float BaseMinTurningTime = 0.0f;
+    internal float BaseMinTurningTime = 0.0f; //could be public, but not needed
     protected float _finalMinTurningTime;
     [SerializeField] [Range(0.0f, 60.0f)] public float BaseManualBrakingPower = 1.0f;
     protected float _finalManualBrakingPower;
     [SerializeField] [Range(0.0f, 60.0f)] public float BaseInertiaBrakingPower = 0.2f;
     protected float _finalInertiaBrakingPower;
+
+    [Header("Weapons")]
+    [SerializeField] public Weapon[] PrimaryWeapons;
+    protected int _activePrimaryWeapon;
+    [SerializeField] public Weapon[] SecondaryWeapons;
+    protected int _activeSecondaryWeapon;
+    [SerializeField] public Weapon[] TertiaryWeapons;
+    protected int _activeTertiaryWeapon;
+    [SerializeField] public Weapon[] QuaternaryWeapons;
+    protected int _activeQuaternaryWeapon;
 
     protected override void Start()
     {
@@ -75,5 +85,43 @@ public class BaseShip : BaseObject
         _finalMinTurningTime = BaseMinTurningTime;
         _finalManualBrakingPower = BaseManualBrakingPower;
         _finalInertiaBrakingPower = BaseInertiaBrakingPower;
+
+        //init weapons
+        _activePrimaryWeapon = 0;
+        _activeSecondaryWeapon = 0;
+        _activeTertiaryWeapon = 0;
+        _activeQuaternaryWeapon = 0;
+    }
+
+    protected void Fire1()
+    {
+        if (PrimaryWeapons.Length > 0)
+        {
+            
+        }
+    }
+
+    protected void Fire2()
+    {
+        if (SecondaryWeapons.Length > 0)
+        {
+
+        }
+    }
+
+    protected void Fire3()
+    {
+        if (TertiaryWeapons.Length > 0)
+        {
+
+        }
+    }
+
+    protected void Fire4()
+    {
+        if (QuaternaryWeapons.Length > 0)
+        {
+
+        }
     }
 }
