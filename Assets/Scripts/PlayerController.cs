@@ -13,6 +13,17 @@ public enum GamePadType
 
 public class PlayerController : BaseShip
 {
+    [Header("Targeting")]
+    [SerializeField] public Transform Reticle;
+    private Vector2 _aimDirection;
+    private Vector3 _currentRecticleVelocity; //used by Vector3.SmoothDamp
+    [SerializeField] public LineRenderer AimLine;
+    [Space(5)]
+    [SerializeField] [Range(0.0f, 20.0f)] float DefaultReticleDistance = 2.5f;
+    [SerializeField] [Range(0.0f, 20.0f)] float MaxReticleDistance = 10.0f;
+    [SerializeField] [Range(0.0f, 1.0f)] float ReticleResetTime = 0.1f;
+    [SerializeField] [Range(0.0f, 1.0f)] float AimLineDotSize = 0.1f;
+
     [Header("Controller Game Pad")]
     [SerializeField] GamePadType ControllerType = GamePadType.None;
     private string _moveXAxis;
@@ -37,6 +48,13 @@ public class PlayerController : BaseShip
         //init velocity and max speed
         _velocity = Vector2.zero;
         _currentMaxSpeed = _finalMaxSpeed;
+
+        //init aim direction
+        _aimDirection = Vector2.up;
+
+        //init aim line
+        AimLine.material.mainTextureScale = new Vector2(1.0f / AimLineDotSize, 1.0f);
+        AimLine.startWidth = AimLineDotSize;
 
         MapGamePad();
     }
@@ -116,6 +134,7 @@ public class PlayerController : BaseShip
     private void Update()
     {
         DirectionalMovement();
+        Aim();
         FireWeapons();
     }
 
@@ -192,6 +211,44 @@ public class PlayerController : BaseShip
 
         //move ship
         transform.Translate(_velocity * Time.deltaTime, Space.World);
+    }
+
+    private void Aim()
+    {
+        if (ControllerType == GamePadType.None)
+        {
+            //aim with reticle
+            Reticle.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Reticle.position = new Vector3(Reticle.position.x, Reticle.position.y, 0.0f);
+
+            //update direction
+            _aimDirection = Reticle.localPosition.normalized;
+        }
+        else
+        {
+            //aim with direction
+            Vector2 direction = new Vector2(Input.GetAxis(_aimXAxis), Input.GetAxis(_aimYAxis));
+            if (direction != Vector2.zero)
+            {
+                //change direction with right stick
+                _aimDirection = direction.normalized;
+
+                //update reticle
+                Reticle.transform.position = transform.position + new Vector3(direction.x, direction.y, 0.0f) * MaxReticleDistance;
+            }
+            else
+            {
+                //return to standard position
+                Reticle.transform.localPosition = Vector3.SmoothDamp(Reticle.transform.localPosition, Vector3.up * DefaultReticleDistance, ref _currentRecticleVelocity, ReticleResetTime);
+            }
+        }
+
+        //unrotate reticle
+        Reticle.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        //draw aim line
+        AimLine.SetPosition(0, new Vector3(Reticle.transform.position.x, Reticle.transform.position.y, -90.0f));
+        AimLine.SetPosition(1, new Vector3(this.transform.position.x, this.transform.position.y, -90.0f));
     }
 
     private void FireWeapons()
