@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BaseShip : BaseObject
 {
+    [Header("Health")]
+    [SerializeField] public float BaseMaxHitPoints = 100.0f;
+    protected float _finalMaxHitPoints;
+    protected float _currentHitPoints;
+
     [Header("Shields")]
     [SerializeField] public float BaseMaxShieldPoints = 50.0f;
     protected float _finalMaxShieldPoints;
@@ -58,9 +63,11 @@ public class BaseShip : BaseObject
     [SerializeField] public Weapon[] QuaternaryWeapons;
     protected int _activeQuaternaryWeapon;
 
-    protected override void Start()
+    protected virtual void Start()
     {
-        base.Start();
+        //init health
+        _finalMaxHitPoints = BaseMaxHitPoints;
+        _currentHitPoints = _finalMaxHitPoints;
 
         //init shields
         _finalMaxShieldPoints = BaseMaxShieldPoints;
