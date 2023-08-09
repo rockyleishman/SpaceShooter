@@ -188,8 +188,8 @@ public class PlayerController : BaseShip
             Helm.rotation = Quaternion.Euler(Helm.eulerAngles.x, Helm.eulerAngles.y, Vector2.SignedAngle(Vector2.up, new Vector2(moveX, moveY)));
 
             //orient ship        
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, _finalMinTurningTime, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier, Time.deltaTime));
-
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, 0.0f, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier * Time.deltaTime, Time.deltaTime));
+            Debug.Log(Time.deltaTime);
             //accelerate
             _velocity += transform.up * new Vector2(moveX, moveY).magnitude * _currentAcceleration * Time.deltaTime;
 
