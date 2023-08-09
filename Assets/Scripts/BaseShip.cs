@@ -44,10 +44,8 @@ public class BaseShip : BaseObject
     protected Vector3 _velocity;
     [SerializeField] public float BaseMaxTurningSpeed = 90.0f;
     protected float _finalMaxTurningSpeed;
-    protected const float k_turningSpeedDegreeModifier = 15.0f;
+    protected const float k_turningSpeedDegreeModifier = 12566.371f;
     protected float _currentTurningVelocity; //used by Mathf.SmoothDampAngle
-    internal float BaseMinTurningTime = 0.0f; //could be public, but not needed
-    protected float _finalMinTurningTime;
     [SerializeField] [Range(0.0f, 60.0f)] public float BaseManualBrakingPower = 1.0f;
     protected float _finalManualBrakingPower;
     [SerializeField] [Range(0.0f, 60.0f)] public float BaseInertiaBrakingPower = 0.2f;
@@ -89,7 +87,6 @@ public class BaseShip : BaseObject
         _finalMaxSpeed = BaseMaxSpeed;
         _velocity = Vector2.zero;
         _finalMaxTurningSpeed = BaseMaxTurningSpeed;
-        _finalMinTurningTime = BaseMinTurningTime;
         _finalManualBrakingPower = BaseManualBrakingPower;
         _finalInertiaBrakingPower = BaseInertiaBrakingPower;
 
