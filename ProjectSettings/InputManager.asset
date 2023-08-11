@@ -237,13 +237,13 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 0
+    gravity: 9
     dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 1
     type: 2
-    axis: 3
+    axis: 5
     joyNum: 0
   - serializedVersion: 3
     m_Name: AimY_XB
