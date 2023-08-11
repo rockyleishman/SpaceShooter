@@ -12,6 +12,10 @@ public class ProjectileShooter : MonoBehaviour
     public float spreadIncreaseRate = 0.1f;
     public float maxSpreadIncrease = 10f;
 
+    [Header("Aim Settings")]
+    public PlayerController player;
+    public bool isAimable = false;
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip fireSound;
@@ -43,7 +47,15 @@ public class ProjectileShooter : MonoBehaviour
         currentSpread = Mathf.Min(currentSpread + spreadIncreaseRate, maxSpreadIncrease);
 
         // Calculate bullet direction with spread angle
-        Vector3 bulletDirection = Quaternion.Euler(0f, 0f, spreadAngle) * transform.up;
+        Vector3 bulletDirection;
+        if (isAimable)
+        {
+            bulletDirection = Quaternion.Euler(0f, 0f, spreadAngle + player._aimAngle) * transform.up;
+        }
+        else
+        {
+            bulletDirection = Quaternion.Euler(0f, 0f, spreadAngle) * transform.up;
+        }
 
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);

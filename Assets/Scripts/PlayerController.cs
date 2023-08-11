@@ -15,7 +15,7 @@ public class PlayerController : BaseShip
 {
     [Header("Targeting")]
     [SerializeField] public Transform Reticle;
-    private Vector2 _aimDirection;
+    internal float _aimAngle; //CHANGE TO PRIVATE
     private Vector3 _currentRecticleVelocity; //used by Vector3.SmoothDamp
     [SerializeField] public LineRenderer AimLine;
     [Space(5)]
@@ -50,7 +50,7 @@ public class PlayerController : BaseShip
         _currentMaxSpeed = _finalMaxSpeed;
 
         //init aim direction
-        _aimDirection = Vector2.up;
+        _aimAngle = 0.0f;
 
         //init aim line
         AimLine.material.mainTextureScale = new Vector2(1.0f / AimLineDotSize, 1.0f);
@@ -222,7 +222,7 @@ public class PlayerController : BaseShip
             Reticle.position = new Vector3(Reticle.position.x, Reticle.position.y, 0.0f);
 
             //update direction
-            _aimDirection = Reticle.localPosition.normalized;
+            _aimAngle = Vector2.SignedAngle(Vector2.up, new Vector2(Reticle.localPosition.x, Reticle.localPosition.y));
         }
         else
         {
@@ -231,7 +231,7 @@ public class PlayerController : BaseShip
             if (direction != Vector2.zero)
             {
                 //change direction with right stick
-                _aimDirection = direction.normalized;
+                _aimAngle = Vector2.SignedAngle(Vector2.up, direction.normalized) - transform.localEulerAngles.z;
 
                 //update reticle
                 Reticle.transform.position = transform.position + new Vector3(direction.x, direction.y, 0.0f) * MaxReticleDistance;
@@ -240,6 +240,9 @@ public class PlayerController : BaseShip
             {
                 //return to standard position
                 Reticle.transform.localPosition = Vector3.SmoothDamp(Reticle.transform.localPosition, Vector3.up * DefaultReticleDistance, ref _currentRecticleVelocity, ReticleResetTime);
+
+                //reset direction
+                _aimAngle = 0.0f;
             }
         }
 
