@@ -1,120 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4439950793003270611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 416719489780452916}
-  - component: {fileID: 6083221223112753215}
-  - component: {fileID: 1959020246170194679}
-  m_Layer: 0
-  m_Name: Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &416719489780452916
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439950793003270611}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8805784444961177116}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &6083221223112753215
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439950793003270611}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 1, g: 0.68126845, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.65
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!114 &1959020246170194679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439950793003270611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &7282062295493278087
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7282062295493278087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03439976, y: 0.03439976, z: 0.03439976}
+  m_LocalScale: {x: 0.19326793, y: 0.19326793, z: 0.19326793}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8805784444961177116}
@@ -242,7 +127,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -250,14 +135,14 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.000011444092
-        value: 0.012741089
-        inSlope: 0
-        outSlope: 0
+        time: 0.004190445
+        value: 0.23077202
+        inSlope: -0.59577644
+        outSlope: -0.59577644
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.08988761
       - serializedVersion: 3
         time: 1
         value: 0
@@ -272,8 +157,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.3001756, b: 0, a: 0.75686276}
-      key1: {r: 0.972549, g: 0.88968766, b: 0, a: 0}
+      key0: {r: 0.9353051, g: 1, b: 0, a: 0.75686276}
+      key1: {r: 1, g: 0.65296394, b: 0.08962262, a: 0}
       key2: {r: 0.972549, g: 0.88968766, b: 0, a: 0}
       key3: {r: 1, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -281,8 +166,8 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 31226
-      ctime2: 18697
+      ctime1: 3855
+      ctime2: 8867
       ctime3: 27756
       ctime4: 0
       ctime5: 0
@@ -297,7 +182,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
+      m_NumColorKeys: 4
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
@@ -330,9 +215,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8805784444961177116}
-  - component: {fileID: 3714742982125073121}
+  - component: {fileID: 8005419940940226003}
   m_Layer: 0
-  m_Name: Proj_Gatling
+  m_Name: Proj_Sniper Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,28 +236,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7942138053490208191}
-  - {fileID: 416719489780452916}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3714742982125073121
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!54 &8005419940940226003
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8467661839946715661}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  serializedVersion: 2
   m_Mass: 1
-  m_LinearDrag: 0
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
   m_Constraints: 0
+  m_CollisionDetection: 0
