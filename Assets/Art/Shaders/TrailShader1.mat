@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StylizedTrail 1
+  m_Name: TrailShader1
   m_Shader: {fileID: -6465566751694194690, guid: 95132029476fc8f4187cdae3ec106c41, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -38,16 +38,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveScale: 30
+    - _DissolveScale: 35
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color01: {r: 1, g: 0.042452812, b: 0.042452812, a: 0}
-    - _Color02: {r: 1, g: 0.25947002, b: 0, a: 0}
-    - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
-    - _MainTexSpeed: {r: 0.1, g: 0, b: 0, a: 0}
+    - _Color01: {r: 1, g: 0, b: 0.07738876, a: 0}
+    - _Color02: {r: 0, g: 0.5085707, b: 1, a: 0}
+    - _DissolveSpeed: {r: -1.58, g: 0, b: 0, a: 0}
+    - _MainTexSpeed: {r: 0.32, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7389341898856303480
+--- !u!114 &3464500248686567571
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
