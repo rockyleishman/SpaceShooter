@@ -2,8 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseShip : BaseObject
+public enum Team
 {
+    Player,
+    Enemy,
+    Neutral,
+    None
+}
+
+public abstract class BaseShip : PoolObject
+{
+    [Header("Team")]
+    [SerializeField] public Team ShipTeam = Team.Enemy;
+
     [Header("Health")]
     [SerializeField] public float BaseMaxHitPoints = 100.0f;
     protected float _finalMaxHitPoints;
@@ -17,6 +28,9 @@ public class BaseShip : BaseObject
     protected float _finalMinShieldPointsRegen;
     [SerializeField] [Range(0.0f, 6000.0f)] public float BaseMinShieldPercentRegen = 2.0f;
     protected float _finalMinShieldPercentRegen;
+    [SerializeField] public float BaseShieldRegenDelay = 5.0f;
+    protected float _finalShieldRegenDelay;
+    protected float _shieldRegenTimer;
 
     [Header("Boost")]
     [SerializeField] [Range(1.0f, 5.0f)] public float BaseBoostMultiplier = 1.5f;
@@ -54,12 +68,24 @@ public class BaseShip : BaseObject
     [Header("Weapons")]
     [SerializeField] public Weapon[] PrimaryWeapons;
     protected int _activePrimaryWeapon;
+    [SerializeField] [Range(0.0f, 360.0f)] public float BasePrimaryWeaponInaccuracy;
+    protected float _finalPrimaryWeaponInaccuracy;
     [SerializeField] public Weapon[] SecondaryWeapons;
     protected int _activeSecondaryWeapon;
+    [SerializeField] [Range(0.0f, 360.0f)] public float BaseSecondaryWeaponInaccuracy;
+    protected float _finalSecondaryWeaponInaccuracy;
     [SerializeField] public Weapon[] TertiaryWeapons;
     protected int _activeTertiaryWeapon;
+    [SerializeField] [Range(0.0f, 360.0f)] public float BaseTertiaryWeaponInaccuracy;
+    protected float _finalTertiaryWeaponInaccuracy;
     [SerializeField] public Weapon[] QuaternaryWeapons;
     protected int _activeQuaternaryWeapon;
+    [SerializeField] [Range(0.0f, 360.0f)] public float BaseQuaternaryWeaponInaccuracy;
+    protected float _finalQuaternaryWeaponInaccuracy;
+
+    internal float _aimAngle; //global angle //CHANGE TO PROTECTED
+
+    [SerializeField] public Transform Reticle; //REMOVE TO PLAYER CONTROLLER
 
     protected virtual void Start()
     {
@@ -72,6 +98,8 @@ public class BaseShip : BaseObject
         _currentShieldPoints = _finalMaxShieldPoints;
         _finalMinShieldPointsRegen = BaseMinShieldPointsRegen;
         _finalMinShieldPercentRegen = BaseMinShieldPercentRegen;
+        _finalShieldRegenDelay = BaseShieldRegenDelay;
+        _shieldRegenTimer = 0.0f;
 
         //init boost
         _finalBoostMultiplier = BaseBoostMultiplier;
@@ -92,16 +120,127 @@ public class BaseShip : BaseObject
 
         //init weapons
         _activePrimaryWeapon = 0;
+        _finalPrimaryWeaponInaccuracy = BasePrimaryWeaponInaccuracy;
         _activeSecondaryWeapon = 0;
+        _finalSecondaryWeaponInaccuracy = BaseSecondaryWeaponInaccuracy;
         _activeTertiaryWeapon = 0;
+        _finalTertiaryWeaponInaccuracy = BaseTertiaryWeaponInaccuracy;
         _activeQuaternaryWeapon = 0;
+        _finalQuaternaryWeaponInaccuracy = BaseQuaternaryWeaponInaccuracy;
     }
+
+    protected virtual void Update()
+    {
+        RegenShields();
+    }
+
+    #region Health
+
+    public void Damage(float attackDamage, float ionDamage, float piercingDamage)
+    {
+        //apply attack damage
+        _currentShieldPoints -= attackDamage;
+        if (_currentShieldPoints < 0.0f)
+        {
+            //apply extra damage to hull
+            _currentHitPoints += _currentShieldPoints;
+        }
+
+        //apply ion damage
+        _currentShieldPoints -= ionDamage;
+        if (_currentShieldPoints < 0.0f)
+        {
+            //set shield to zero
+            _currentShieldPoints = 0.0f;
+        }
+
+        //apply piercing damage
+        _currentHitPoints -= piercingDamage;
+        if (_currentHitPoints <= 0.0f)
+        {
+            //destroy ship
+            _currentHitPoints = 0.0f;
+            Death();
+        }
+
+        //reset shield regen timer
+        _shieldRegenTimer = _finalShieldRegenDelay;
+    }
+
+    public void Heal(float healthAmount, float shieldsAmount)
+    {
+        //apply health heal
+        _currentHitPoints += healthAmount;
+        if (_currentHitPoints > _finalMaxHitPoints)
+        {
+            _currentHitPoints = _finalMaxHitPoints;
+        }
+
+        //apply shields heal
+        _currentShieldPoints += shieldsAmount;
+        if (_currentShieldPoints > _finalMaxShieldPoints)
+        {
+            _currentShieldPoints = _finalMaxShieldPoints;
+        }
+    }
+
+    protected void RegenShields()
+    {
+        if (_shieldRegenTimer <= 0.0f && _currentShieldPoints < _finalMaxShieldPoints)
+        {
+            float shieldPercentUp = _finalMaxShieldPoints * _finalMinShieldPercentRegen / 100.0f * Time.deltaTime;
+            float shieldPointsUp = _finalMinShieldPointsRegen * Time.deltaTime;
+            if (shieldPercentUp > shieldPointsUp)
+            {
+                _currentShieldPoints += shieldPercentUp;
+            }
+            else
+            {
+                _currentShieldPoints += shieldPointsUp;
+            }
+            //clamp at max
+            if (_currentShieldPoints > _finalMaxShieldPoints)
+            {
+                _currentShieldPoints = _finalMaxShieldPoints;
+            }
+        }
+
+        //decrease shield regen timer
+        _shieldRegenTimer -= Time.deltaTime;
+    }
+    protected void RegenBoost()
+    {
+        if (_currentBoostPoints < _finalMaxBoostPoints)
+        {
+            float boostPercentUp = _finalMaxBoostPoints * _finalMinBoostPercentRegen / 100.0f * Time.deltaTime;
+            float boostPointsUp = _finalMinBoostPointsRegen * Time.deltaTime;
+            if (boostPercentUp > boostPointsUp)
+            {
+                _currentBoostPoints += boostPercentUp;
+            }
+            else
+            {
+                _currentBoostPoints += boostPointsUp;
+            }
+            //clamp at max
+            if (_currentBoostPoints > _finalMaxBoostPoints)
+            {
+                _currentBoostPoints = _finalMaxBoostPoints;
+            }
+        }
+    }
+
+    protected abstract void Death();
+
+    #endregion
+
+    #region Weapons
 
     protected void Fire1()
     {
         if (PrimaryWeapons.Length > 0)
         {
-            
+            PrimaryWeapons[_activePrimaryWeapon].AutoTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
         }
     }
 
@@ -109,7 +248,7 @@ public class BaseShip : BaseObject
     {
         if (SecondaryWeapons.Length > 0)
         {
-
+            //TODO
         }
     }
 
@@ -117,7 +256,7 @@ public class BaseShip : BaseObject
     {
         if (TertiaryWeapons.Length > 0)
         {
-
+            //TODO
         }
     }
 
@@ -125,7 +264,9 @@ public class BaseShip : BaseObject
     {
         if (QuaternaryWeapons.Length > 0)
         {
-
+            //TODO
         }
     }
+
+    #endregion
 }

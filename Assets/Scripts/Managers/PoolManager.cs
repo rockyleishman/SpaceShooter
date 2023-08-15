@@ -28,7 +28,7 @@ public class PoolManager : Singleton<PoolManager>
         }
     }
 
-    public PoolObject Spawn(string name)
+    public PoolObject Spawn(string name, Vector3 worldPosition)
     {
         Stack<PoolObject> poolObjectStack = _stackDictionary[name];
 
@@ -37,12 +37,14 @@ public class PoolManager : Singleton<PoolManager>
             //return clone if only 1 left
             PoolObject clone = Instantiate(poolObjectStack.Peek());
             clone.name = name;
+            clone.transform.position = worldPosition;
             return clone;
         }
         else
         {
             //pop, activate, and return
             PoolObject poolObject = poolObjectStack.Pop();
+            poolObject.transform.position = worldPosition;
             poolObject.gameObject.SetActive(true);
             return poolObject;
         }
