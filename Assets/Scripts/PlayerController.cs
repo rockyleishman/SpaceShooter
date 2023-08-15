@@ -14,8 +14,7 @@ public enum GamePadType
 public class PlayerController : BaseShip
 {
     [Header("Targeting")]
-    [SerializeField] public Transform Reticle;
-    internal float _aimAngle; //CHANGE TO PRIVATE
+    //[SerializeField] public Transform Reticle;
     private Vector3 _currentRecticleVelocity; //used by Vector3.SmoothDamp
     [SerializeField] public LineRenderer AimLine;
     [Space(5)]
@@ -131,8 +130,9 @@ public class PlayerController : BaseShip
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         DirectionalMovement();
         Aim();
         FireWeapons();
@@ -159,24 +159,7 @@ public class PlayerController : BaseShip
         //regenerate boost
         if (Input.GetAxis(_boostAxis) <= 0.0f)
         {
-            if (_currentBoostPoints < _finalMaxBoostPoints)
-            {
-                float boostPercentUp = _finalMaxBoostPoints * _finalMinBoostPercentRegen / 100.0f * Time.deltaTime;
-                float boostPointsUp = _finalMinBoostPointsRegen * Time.deltaTime;
-                if (boostPercentUp > boostPointsUp)
-                {
-                    _currentBoostPoints += boostPercentUp;
-                }
-                else
-                {
-                    _currentBoostPoints += boostPointsUp;
-                }
-                //clamp at max
-                if (_currentBoostPoints > _finalMaxBoostPoints)
-                {
-                    _currentBoostPoints = _finalMaxBoostPoints;
-                }
-            }
+            RegenBoost();
         }
 
         float moveX = Input.GetAxis(_moveXAxis);
@@ -189,7 +172,7 @@ public class PlayerController : BaseShip
 
             //orient ship        
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, 0.0f, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier * Time.deltaTime, Time.deltaTime));
-            Debug.Log(Time.deltaTime);
+            
             //accelerate
             _velocity += transform.up * new Vector2(moveX, moveY).magnitude * _currentAcceleration * Time.deltaTime;
 
@@ -267,5 +250,12 @@ public class PlayerController : BaseShip
         {
             Fire2();
         }
+    }
+
+    protected override void Death()
+    {
+        //player death
+        //TODO
+        Debug.Log("YOU DIED");
     }
 }
