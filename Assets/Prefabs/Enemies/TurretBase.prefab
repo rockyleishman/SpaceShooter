@@ -214,6 +214,7 @@ MonoBehaviour:
   head: {fileID: 2370903960070114925}
   barrel: {fileID: 2841100569942820012}
   _Projectile: {fileID: 8467661839946715661, guid: 438fcf5f4d600374eb884a1543a2eb4b, type: 3}
+  projectileSpeed: 1500
   fireRate: 1
   nextFire: 0
 --- !u!1001 &2370903960264860487
