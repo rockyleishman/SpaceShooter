@@ -15,6 +15,8 @@ public class PlayerController : BaseShip
 {
     private bool _isFiring1;
     private bool _isFiring2;
+    private bool _isSwapping1;
+    private bool _isSwapping2;
 
     [Header("Targeting")]
     //[SerializeField] public Transform Reticle;
@@ -47,9 +49,11 @@ public class PlayerController : BaseShip
     {
         base.Start();
 
-        //init is firing
+        //init axis button flags
         _isFiring1 = false;
         _isFiring2 = false;
+        _isSwapping1 = false;
+        _isSwapping2 = false;
 
         //init velocity and max speed
         _velocity = Vector2.zero;
@@ -142,6 +146,7 @@ public class PlayerController : BaseShip
         base.Update();
         DirectionalMovement();
         Aim();
+        SwapWeapons();
         FireWeapons();
     }
 
@@ -274,6 +279,53 @@ public class PlayerController : BaseShip
         else
         {
             _isFiring2 = false;
+        }
+    }
+
+    private void SwapWeapons()
+    {
+        //swap primary weapon
+        if (Input.GetAxis(_swapAxis) > 0.0f)
+        {
+            if (!_isSwapping1)
+            {
+                //swap
+                _activePrimaryWeapon++;
+                if (_activePrimaryWeapon >= PrimaryWeapons.Length)
+                {
+                    _activePrimaryWeapon = 0;
+                }
+
+                _isSwapping1 = true;
+            }
+            //already swapped for this press
+        }
+        else
+        {
+            //allow next swap
+            _isSwapping1 = false;
+        }
+
+        //swap secondary weapon
+        if (Input.GetAxis(_swapAxis) < 0.0f)
+        {
+            if (!_isSwapping2)
+            {
+                //swap
+                _activeSecondaryWeapon++;
+                if (_activeSecondaryWeapon >= SecondaryWeapons.Length)
+                {
+                    _activeSecondaryWeapon = 0;
+                }
+
+                _isSwapping2 = true;
+            }
+            //already swapped for this press
+        }
+        else
+        {
+            //allow next swap
+            _isSwapping2 = false;
         }
     }
 

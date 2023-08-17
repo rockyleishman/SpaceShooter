@@ -82,7 +82,7 @@ MonoBehaviour:
   WeaponType: 0
   AimType: 3
   BaseLimitedRange: 90
-  BaseAttackSpeed: 2
+  BaseAttackSpeed: 10
   BaseAttackDamage: 1
   BaseIonDamage: 0
   BasePiercingDamage: 0
