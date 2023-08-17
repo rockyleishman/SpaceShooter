@@ -236,7 +236,7 @@ public abstract class BaseShip : PoolObject
 
     #region Weapons
 
-    protected void Fire1()
+    protected void Fire1Auto()
     {
         if (PrimaryWeapons.Length > 0)
         {
@@ -244,27 +244,59 @@ public abstract class BaseShip : PoolObject
         }
     }
 
-    protected void Fire2()
+    protected void Fire1Semi()
+    {
+        if (PrimaryWeapons.Length > 0)
+        {
+            PrimaryWeapons[_activePrimaryWeapon].SemiTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
+        }
+    }
+
+    protected void Fire2Auto()
     {
         if (SecondaryWeapons.Length > 0)
         {
-            //TODO
+            SecondaryWeapons[_activeSecondaryWeapon].AutoTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
         }
     }
 
-    protected void Fire3()
+    protected void Fire2Semi()
+    {
+        if (SecondaryWeapons.Length > 0)
+        {
+            SecondaryWeapons[_activeSecondaryWeapon].SemiTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
+        }
+    }
+
+    protected void Fire3Auto()
     {
         if (TertiaryWeapons.Length > 0)
         {
-            //TODO
+            TertiaryWeapons[_activeTertiaryWeapon].AutoTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
         }
     }
 
-    protected void Fire4()
+    protected void Fire3Semi()
+    {
+        if (TertiaryWeapons.Length > 0)
+        {
+            TertiaryWeapons[_activeTertiaryWeapon].SemiTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
+        }
+    }
+
+    protected void Fire4Auto()
     {
         if (QuaternaryWeapons.Length > 0)
         {
-            //TODO
+            QuaternaryWeapons[_activeQuaternaryWeapon].AutoTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
+        }
+    }
+
+    protected void Fire4Semi()
+    {
+        if (QuaternaryWeapons.Length > 0)
+        {
+            QuaternaryWeapons[_activeQuaternaryWeapon].SemiTrigger(ShipTeam, _finalPrimaryWeaponInaccuracy, Reticle, _aimAngle);
         }
     }
 
