@@ -13,6 +13,9 @@ public enum GamePadType
 
 public class PlayerController : BaseShip
 {
+    private bool _isFiring1;
+    private bool _isFiring2;
+
     [Header("Targeting")]
     //[SerializeField] public Transform Reticle;
     private Vector3 _currentRecticleVelocity; //used by Vector3.SmoothDamp
@@ -43,6 +46,10 @@ public class PlayerController : BaseShip
     protected override void Start()
     {
         base.Start();
+
+        //init is firing
+        _isFiring1 = false;
+        _isFiring2 = false;
 
         //init velocity and max speed
         _velocity = Vector2.zero;
@@ -242,13 +249,31 @@ public class PlayerController : BaseShip
         //fire primary weapon
         if (Input.GetAxis(_fire1Axis) > 0.0f)
         {
-            Fire1();
+            Fire1Auto();
+            if (!_isFiring1)
+            {
+                Fire1Semi();
+                _isFiring1 = true;
+            }
+        }
+        else
+        {
+            _isFiring1 = false;
         }
 
-        //fire secondary weapon (special)
+        //fire secondary weapon
         if (Input.GetAxis(_fire2Axis) > 0.0f)
         {
-            Fire2();
+            Fire2Auto(); ;
+            if (!_isFiring2)
+            {
+                Fire2Semi();
+                _isFiring2 = true;
+            }
+        }
+        else
+        {
+            _isFiring2 = false;
         }
     }
 

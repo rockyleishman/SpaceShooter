@@ -10,5 +10,7 @@ public class GameManager : Singleton<GameManager>
     {
         //get data objects
         LevelDataObject = DataManager.Instance.LevelDataObject;
+
+        Cursor.visible = false; //TEMPORARY
     }
 }
