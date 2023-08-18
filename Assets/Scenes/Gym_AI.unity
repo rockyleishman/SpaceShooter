@@ -5978,7 +5978,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -100, y: 0}
+  m_Offset: {x: -750, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5989,7 +5989,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 300}
+  m_Size: {x: 1000, y: 2500}
   m_EdgeRadius: 0
 --- !u!61 &1704822213
 BoxCollider2D:
@@ -6004,7 +6004,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -100}
+  m_Offset: {x: 0, y: -750}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6015,7 +6015,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 300, y: 100}
+  m_Size: {x: 2500, y: 1000}
   m_EdgeRadius: 0
 --- !u!61 &1704822214
 BoxCollider2D:
@@ -6030,7 +6030,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 100, y: 0}
+  m_Offset: {x: 750, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6041,7 +6041,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 300}
+  m_Size: {x: 1000, y: 2500}
   m_EdgeRadius: 0
 --- !u!61 &1704822215
 BoxCollider2D:
@@ -6056,7 +6056,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 100}
+  m_Offset: {x: 0, y: 750}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6067,7 +6067,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 300, y: 100}
+  m_Size: {x: 2500, y: 1000}
   m_EdgeRadius: 0
 --- !u!114 &1704822216
 MonoBehaviour:
@@ -6695,6 +6695,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6282699200662719794, guid: abafb82b7b93bbd41b0a56ab1a5d8785, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6620892177289223701, guid: abafb82b7b93bbd41b0a56ab1a5d8785, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -6829,7 +6833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610289400379121397, guid: abafb82b7b93bbd41b0a56ab1a5d8785, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8643585173624551373, guid: abafb82b7b93bbd41b0a56ab1a5d8785, type: 3}
       propertyPath: m_Layer
