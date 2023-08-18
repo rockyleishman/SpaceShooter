@@ -333,12 +333,7 @@ public class PlayerController : BaseShip
     {
         //player death
 
-        //spawn death effect
-        Effect deathEffect = (Effect)PoolManager.Instance.Spawn(DeathEffect.name, transform.position);
-        deathEffect.Init();
-
         //TODO
-        Debug.Log("YOU DIED");
 
         base.Death();
     }
