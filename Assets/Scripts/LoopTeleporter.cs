@@ -12,6 +12,12 @@ public class LoopTeleporter : MonoBehaviour
         _levelDataObject = DataManager.Instance.LevelDataObject;
     }
 
+    private void LateUpdate()
+    {
+        //lock rotation //NEEDS WORK
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         BaseObject baseObject = other?.GetComponent<BaseObject>();
