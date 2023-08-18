@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 3337023085316226548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1043113875027059142}
@@ -80,20 +80,20 @@ MonoBehaviour:
   BarrelTips:
   - {fileID: 1043113875027059142}
   WeaponType: 0
-  AimType: 3
+  AimType: 0
   BaseLimitedRange: 90
-  BaseAttackSpeed: 2
+  BaseAttackSpeed: 5.1
   BaseAttackDamage: 1
   BaseIonDamage: 0
   BasePiercingDamage: 0
   IsExplosive: 0
   BlastDamagesAllTeams: 0
   BaseBlastRadius: 1
-  ProjectilePrefab: {fileID: 1959879030659411137, guid: 866a1f467d25f9746ba83e55c9fa9e79, type: 3}
+  ProjectilePrefab: {fileID: 1959879030659411137, guid: 733bdc17a1fb34b4ebb24dd94382ee28, type: 3}
   FireEffect: {fileID: -7392524362779947040, guid: 9e855616ff8cb2d49ba31427b45fb669, type: 3}
   DryFireEffect: {fileID: -7392524362779947040, guid: 9e855616ff8cb2d49ba31427b45fb669, type: 3}
   BaseProjectileCount: 1
-  BaseProjectileSpeed: 20
+  BaseProjectileSpeed: 70
   BaseProjectilePersistence: 5
   BaseInaccuracy: 0
   IsAutomatic: 1
