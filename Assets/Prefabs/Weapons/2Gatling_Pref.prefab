@@ -128,7 +128,7 @@ MonoBehaviour:
   DryFireEffect: {fileID: -7392524362779947040, guid: 9e855616ff8cb2d49ba31427b45fb669, type: 3}
   BaseProjectileCount: 1
   BaseProjectileSpeed: 40
-  BaseProjectilePersistence: 3
+  BaseProjectilePersistence: 4
   BaseInaccuracy: 1
   IsAutomatic: 1
   BaseMaxAutoSpread: 0
