@@ -510,7 +510,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 97e20576bc77d7b4ea824c560e9a48b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -531,7 +531,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 2.11
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -541,12 +541,12 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -2.2347918
-        outSlope: -2.2347918
+        inSlope: 0.04042643
+        outSlope: 0.04042643
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.06692913
+        outWeight: 0.24572317
       - serializedVersion: 3
         time: 1
         value: 0
@@ -754,9 +754,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.027664304}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.6854157
 --- !u!50 &3714742982125073121
 Rigidbody2D:
   serializedVersion: 4
