@@ -791,4 +791,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlastEffect: {fileID: -7392524362779947040, guid: 9e855616ff8cb2d49ba31427b45fb669, type: 3}
-  HitEffect: {fileID: -7392524362779947040, guid: ab74411d27db52e48b090de857ab05f3, type: 3}
+  HitEffect: {fileID: -7392524362779947040, guid: 86b797a609b1c0746aa92267102a0345, type: 3}
