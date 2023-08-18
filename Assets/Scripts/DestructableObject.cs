@@ -25,7 +25,7 @@ public class DestructableObject : PoolObject
     protected float _finalShieldRegenDelay;
     protected float _shieldRegenTimer;
 
-    private void Start()
+    protected virtual void Start()
     {
         //init health
         _finalMaxHitPoints = BaseMaxHitPoints;
@@ -38,6 +38,11 @@ public class DestructableObject : PoolObject
         _finalMinShieldPercentRegen = BaseMinShieldPercentRegen;
         _finalShieldRegenDelay = BaseShieldRegenDelay;
         _shieldRegenTimer = 0.0f;
+    }
+
+    protected virtual void Update()
+    {
+        RegenShields();
     }
 
     #region Health
@@ -62,6 +67,8 @@ public class DestructableObject : PoolObject
 
         //apply piercing damage
         _currentHitPoints -= piercingDamage;
+
+        //check death
         if (_currentHitPoints <= 0.0f)
         {
             //destroy ship

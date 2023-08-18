@@ -63,12 +63,14 @@ public abstract class BaseShip : DestructableObject
     [SerializeField] [Range(0.0f, 360.0f)] public float BaseQuaternaryWeaponInaccuracy;
     protected float _finalQuaternaryWeaponInaccuracy;
 
-    internal float _aimAngle; //global angle //CHANGE TO PROTECTED
+    internal float _aimAngle; //CHANGE TO PROTECTED
 
-    [SerializeField] public Transform Reticle; //REMOVE TO PLAYER CONTROLLER
+    [SerializeField] public Transform Reticle;
 
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
+
         //init boost
         _finalBoostMultiplier = BaseBoostMultiplier;
         _finalBoostDecayTime = BaseBoostDecayTime;
@@ -97,7 +99,7 @@ public abstract class BaseShip : DestructableObject
         _finalQuaternaryWeaponInaccuracy = BaseQuaternaryWeaponInaccuracy;
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
         RegenShields();
     }
