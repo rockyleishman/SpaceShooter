@@ -60,8 +60,8 @@ public class Projectile : PoolObject
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        BaseShip otherShip = other?.GetComponentInParent<BaseShip>();
-        if (otherShip != null && otherShip.ShipTeam != _firingTeam)
+        DestructableObject destructableObject = other?.GetComponentInParent<DestructableObject>();
+        if (destructableObject != null && destructableObject.ShipTeam != _firingTeam)
         {
             if (_isExplosive)
             {
@@ -73,14 +73,14 @@ public class Projectile : PoolObject
                 Collider2D[] otherObjects = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), _blastRadius);
                 foreach (Collider2D otherObject in otherObjects)
                 {
-                    BaseShip ship = otherObject?.GetComponentInParent<BaseShip>();
-                    if (ship != null && (_damagesAll || ship.ShipTeam != _firingTeam))
+                    DestructableObject hitObject = otherObject?.GetComponentInParent<DestructableObject>();
+                    if (hitObject != null && (_damagesAll || hitObject.ShipTeam != _firingTeam))
                     {
                         //deal explosive damage
-                        ship.Damage(_attackDamage, _ionDamage, _piercingDamage);
+                        hitObject.Damage(_attackDamage, _ionDamage, _piercingDamage);
 
                         //spawn hit effect
-                        Effect hitEffect = (Effect)PoolManager.Instance.Spawn(HitEffect.name, ship.transform.position);
+                        Effect hitEffect = (Effect)PoolManager.Instance.Spawn(HitEffect.name, hitObject.transform.position);
                         hitEffect.Init();
                     }
                 }
@@ -88,7 +88,7 @@ public class Projectile : PoolObject
             else
             {
                 //deal projectile damage
-                otherShip.Damage(_attackDamage, _ionDamage, _piercingDamage);
+                destructableObject.Damage(_attackDamage, _ionDamage, _piercingDamage);
 
                 //spawn hit effect
                 Effect hitEffect = (Effect)PoolManager.Instance.Spawn(HitEffect.name, transform.position);
