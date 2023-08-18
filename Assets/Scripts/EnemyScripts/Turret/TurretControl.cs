@@ -3,46 +3,45 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TurretControl : MonoBehaviour
+public class TurretControl : BaseShip
 {
-
-    Transform _Player;
-    float dist;
-    public float howClose;
-    public Transform head, barrel;
-    public GameObject _Projectile;
-    public float projectileSpeed = 1500f;
-    public float fireRate, nextFire;
+    [Header("Turret Control")]
+    public float ActiveRange;
+    private Transform _player;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        _Player = GameObject.FindGameObjectWithTag("Player").transform;
+        base.Start();
+
+        //find player
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        dist = Vector3.Distance(_Player.position, transform.position);
-        if(dist <= howClose)
+        base.Update();
+
+        Aim();
+        Shoot();
+    }
+
+    private void Aim()
+    {
+        //set reticle
+        Reticle.transform.position = _player.transform.position;
+
+        //rotate turret
+        Helm.rotation = Quaternion.Euler(0.0f, 0.0f, Vector2.SignedAngle(Vector2.up, Reticle.position - transform.position));
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.SmoothDampAngle(transform.eulerAngles.z, Helm.eulerAngles.z, ref _currentTurningVelocity, 0.0f, _finalMaxTurningSpeed * k_turningSpeedDegreeModifier * Time.deltaTime, Time.deltaTime));
+    }
+
+    void Shoot()
+    {
+        if (Vector3.Distance(Reticle.position, transform.position) <= ActiveRange)
         {
-            head.LookAt(_Player);
-            if(Time.time >= nextFire)
-            {
-                nextFire = Time.time + 1f / fireRate;
-                shoot();
-            }
+            Fire1Auto();
         }
     }
-
-    void shoot()
-    {
-        GameObject clone = Instantiate(_Projectile, barrel.position, head.rotation);
-        clone.GetComponent<Rigidbody>().AddForce(head.forward * projectileSpeed);
-        Destroy(clone, 10);
-        //force forward
-    }
-
-
-
 }

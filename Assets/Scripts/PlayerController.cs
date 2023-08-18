@@ -340,5 +340,6 @@ public class PlayerController : BaseShip
         //TODO
         Debug.Log("YOU DIED");
 
+        base.Death();
     }
 }
