@@ -39,11 +39,11 @@ public class PlayerController : BaseShip
     private string _fire1Axis;
     private string _fire2Axis;
     private string _swapAxis;
-    private string _pauseAxis;
-    private string _menuSelectAxis;
-    private string _menuBackAxis;
-    private string _menuNavXAxis;
-    private string _menuNavYAxis;
+    //private string _pauseAxis;
+    //private string _menuSelectAxis;
+    //private string _menuBackAxis;
+    //private string _menuNavXAxis;
+    //private string _menuNavYAxis;
 
     protected override void Start()
     {
@@ -82,11 +82,11 @@ public class PlayerController : BaseShip
             _fire1Axis = "Fire1_PS";
             _fire2Axis = "Fire2_PS";
             _swapAxis = "Swap_PS";
-            _pauseAxis = "Pause_PS";
-            _menuSelectAxis = "MenuSelect_PS";
-            _menuBackAxis = "MenuBack_PS";
-            _menuNavXAxis = "MenuNavX_PS";
-            _menuNavYAxis = "MenuNavY_PS";
+            //_pauseAxis = "Pause_PS";
+            //_menuSelectAxis = "MenuSelect_PS";
+            //_menuBackAxis = "MenuBack_PS";
+            //_menuNavXAxis = "MenuNavX_PS";
+            //_menuNavYAxis = "MenuNavY_PS";
         }
         else if (ControllerType == GamePadType.XBox)
         {
@@ -99,11 +99,11 @@ public class PlayerController : BaseShip
             _fire1Axis = "Fire1_XB";
             _fire2Axis = "Fire2_XB";
             _swapAxis = "Swap_XB";
-            _pauseAxis = "Pause_XB";
-            _menuSelectAxis = "MenuSelect_XB";
-            _menuBackAxis = "MenuBack_XB";
-            _menuNavXAxis = "MenuNavX_XB";
-            _menuNavYAxis = "MenuNavY_XB";
+            //_pauseAxis = "Pause_XB";
+            //_menuSelectAxis = "MenuSelect_XB";
+            //_menuBackAxis = "MenuBack_XB";
+            //_menuNavXAxis = "MenuNavX_XB";
+            //_menuNavYAxis = "MenuNavY_XB";
         }
         else if (ControllerType == GamePadType.NintendoSwitchProController)
         {
@@ -116,11 +116,11 @@ public class PlayerController : BaseShip
             _fire1Axis = "Fire1_NSP";
             _fire2Axis = "Fire2_NSP";
             _swapAxis = "Swap_NSP";
-            _pauseAxis = "Pause_NSP";
-            _menuSelectAxis = "MenuSelect_NSP";
-            _menuBackAxis = "MenuBack_NSP";
-            _menuNavXAxis = "MenuNavX_NSP";
-            _menuNavYAxis = "MenuNavY_NSP";
+            //_pauseAxis = "Pause_NSP";
+            //_menuSelectAxis = "MenuSelect_NSP";
+            //_menuBackAxis = "MenuBack_NSP";
+            //_menuNavXAxis = "MenuNavX_NSP";
+            //_menuNavYAxis = "MenuNavY_NSP";
         }
         else
         {
@@ -133,11 +133,11 @@ public class PlayerController : BaseShip
             _fire1Axis = "Fire1_KBM";
             _fire2Axis = "Fire2_KBM";
             _swapAxis = "Swap_KBM";
-            _pauseAxis = "Pause_KBM";
-            _menuSelectAxis = "Null";
-            _menuBackAxis = "Null";
-            _menuNavXAxis = "Null";
-            _menuNavYAxis = "Null";
+            //_pauseAxis = "Pause_KBM";
+            //_menuSelectAxis = "Null";
+            //_menuBackAxis = "Null";
+            //_menuNavXAxis = "Null";
+            //_menuNavYAxis = "Null";
         }
     }
 
@@ -332,7 +332,13 @@ public class PlayerController : BaseShip
     protected override void Death()
     {
         //player death
+
+        //spawn death effect
+        Effect deathEffect = (Effect)PoolManager.Instance.Spawn(DeathEffect.name, transform.position);
+        deathEffect.Init();
+
         //TODO
         Debug.Log("YOU DIED");
+
     }
 }
