@@ -61,7 +61,7 @@ public class Projectile : PoolObject
     private void OnTriggerEnter2D(Collider2D other)
     {
         DestructableObject destructableObject = other?.GetComponentInParent<DestructableObject>();
-        if (destructableObject != null)
+        if (destructableObject != null && destructableObject.ShipTeam != _firingTeam)
         {
             if (_isExplosive)
             {
@@ -85,7 +85,7 @@ public class Projectile : PoolObject
                     }
                 }
             }
-            else if (destructableObject.ShipTeam != _firingTeam)
+            else
             {
                 //deal projectile damage
                 destructableObject.Damage(_attackDamage, _ionDamage, _piercingDamage);
