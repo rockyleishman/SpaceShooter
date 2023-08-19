@@ -31176,6 +31176,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6114665808340206713, guid: 6361d2930fa9f1440ba9a02d352bcc08, type: 3}
+      propertyPath: ControllerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114665808340206713, guid: 6361d2930fa9f1440ba9a02d352bcc08, type: 3}
       propertyPath: BaseAcceleration
       value: 20
       objectReference: {fileID: 0}

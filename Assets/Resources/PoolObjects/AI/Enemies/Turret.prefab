@@ -824,9 +824,11 @@ MonoBehaviour:
   BaseMaxTurningSpeed: 90
   BaseManualBrakingPower: 0
   BaseInertiaBrakingPower: 0
-  PrimaryWeapons: []
+  PrimaryWeapons:
+  - {fileID: 6865122006252387254, guid: f0d838ee89058e24ab39063159ce9373, type: 3}
   BasePrimaryWeaponInaccuracy: 0
-  SecondaryWeapons: []
+  SecondaryWeapons:
+  - {fileID: 6865122006252387254, guid: f0d838ee89058e24ab39063159ce9373, type: 3}
   BaseSecondaryWeaponInaccuracy: 0
   TertiaryWeapons: []
   BaseTertiaryWeaponInaccuracy: 0
